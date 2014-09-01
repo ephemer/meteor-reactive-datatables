@@ -17,7 +17,7 @@ Package.onUse(function(api) {
 
 /*Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('reactive-datatable');
-  api.addFiles('reactive-datatable-tests.js');
+  api.use('ephemer:reactive-datatables');
+  api.addFiles('reactive-datatables-tests.js');
 });
 */
