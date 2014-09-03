@@ -1,6 +1,6 @@
 Package.describe({
-  summary: "Create state-aware reactive datatables",
-  version: "1.0.0",
+  summary: "Create FAST and reactive jQuery DataTables using standard Meteor Cursors and DataTables API. Bootstrap 3 Compatible.",
+  version: "1.0.1",
   git: "https://github.com/ephemer/meteor-reactive-datatables.git"
 });
 
