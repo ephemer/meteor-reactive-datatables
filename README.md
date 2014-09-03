@@ -11,11 +11,11 @@ Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](h
 
 In your template:
 
-    <template name="SongsOverview">
+    <template name="containsTheDataTable">
         {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject }}
     </template>
 
-**Important:** Due to the way Blaze interprets parameters upon calling a template, `reactiveDataFunction` should *return a function that returns a cursor*, not return a cursor itself. I'm sure there's a cleverer way to do this, but this works for now:
+**Important:** Due to the way Blaze interprets parameters upon calling a template, `reactiveDataFunction` should *return a __function__ that returns a cursor*, not return a cursor itself. I'm sure there's a cleverer way to do this, but it works for now:
 
     dataTableData = function () {
         return Meteor.users.find();
@@ -33,22 +33,23 @@ Set up your datatable's options as per the jquery.dataTables API, e.g.:
 
     var optionsObject = {
         columns: [{
-            title: 'ID',
+            title: 'Real Name',
             data: 'profile.realname', // note: access nested data like this
-            className: 'narrowColumn'
+            className: 'nameColumn'
         }, {
-            title: 'Cover',
-            data: 'albumCover',
-            render: renderColumn, // optional, see below
+            title: 'Photo',
+            data: 'profile.picture',
+            render: renderPhoto, // optional data transform, see below
             className: 'imageColumn'
         }],
-        // ... see jquery.dataTables docs
+        // ... see jquery.dataTables docs for more
     }
     
-    function renderColumn(cellData, renderType, rowData) {
+    function renderPhoto(cellData, renderType, currentRow) {
         // You can return html strings, change sort order etc. here
         // Again, see jquery.dataTables docs
-        return cellData;
+        var img = "<img src='" + cellData + "' title='" + currentRow.profile.realname + "'>"
+        return img;
     }
 
 
