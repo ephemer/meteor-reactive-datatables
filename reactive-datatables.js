@@ -1,5 +1,7 @@
-ReactiveDatatable = function (options) {
-	var tableID = "datatable";
+ReactiveDatatable = function (options, id) {
+	console.log(options);
+	var tableID = id ? id : "datatable";
+	alert(tableID);
 	var self = this;
 
 	this.options = options = _.defaults({
