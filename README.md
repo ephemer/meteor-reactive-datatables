@@ -6,15 +6,15 @@ Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](h
 
 **NOTE: This is a fork of ephemer:reactive-datatables**
  
-**That version did not support multiple reactive tables on the same page. **
+**That version did not support multiple reactive tables on the same page.**
 
-**This version does (fully). **
+**This version does (fully).**
 
-**There are several "backwards compatibility hacks" in this version which will be removed in ssteinerx:reactive-datatables Version 1.1.0 **
+**There are several "backwards compatibility hacks" in this version which will be removed in ssteinerx:reactive-datatables Version 1.1.0**
 
-**Deprecation warnings will be provided in all 1.0.x versions, they will become errors in 1.1.0 **
+**Deprecation warnings will be provided in all 1.0.x versions, they will become errors in 1.1.0**
 
-**Watch your console! ** 
+**Watch your console!** 
 
 
 ## Installation
