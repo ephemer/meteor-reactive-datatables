@@ -1,5 +1,9 @@
 # Reactive Datables
 
+Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](http://datatables.net/) with reactively-updating data, instant search, state saving / pagination etc.
+
+## Compatibility!
+
 **NOTE: This is a fork of ephemer:reactive-datatables**
  
 **      That version did not support multiple reactive tables on the same page. **
@@ -11,8 +15,6 @@
 ** Deprecation warnings will be provided in all 1.0.x versions, they will become errors in 1.1.0 **
 
 ** Watch your console! ** 
-
-Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](http://datatables.net/) with reactively-updating data, instant search, state saving / pagination etc.
 
 
 ## Installation
