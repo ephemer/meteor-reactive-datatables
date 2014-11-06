@@ -1,6 +1,14 @@
 ReactiveDatatable = function (options, id) {
-	// Use the base id they passed one in, otherwise 'datatable'
-	var tableID = id || "datatable";
+	// Use the base id they passed one in, otherwise default to 'datatable'
+	var tableID = id || "datatable";    // TODO: don't allow default any more as it will
+										//		 cause multiple instances to have 
+										// 		 non-unique DOM ids
+	if (tableID === "datatable"){
+		// TODO: ssteinerX -- November 6, 2014
+		//		 see if there's a way of getting the name of the parent template being
+		//       rendered so we can point them directly at the right piece of code.
+		console.log("reactive-datatable: Deprecation warning, must have unique 'id' in Template.yourtemplate.helpers");
+	}
 
 	// TODO: ss -- November 5, 2014
 	//		 iterate through tableID_0...tableID_??
@@ -33,10 +41,11 @@ ReactiveDatatable = function (options, id) {
 	table.id = tableID;
 	table.className = "table dataTable";
 	
-	// Render the table element and turn it into a DataTable
-	var ourDiv = "#" + tableID + "_wrapper";
-	console.log("ourDiv = " + ourDiv)
-	$(ourDiv).append(table);
+	// Render the table element inside our wrapper and turn it into a DataTable
+	// NOTE: DataTable uses tableID_wrapper so we use 'tableID_outside_wrapper' to 
+	//		 avoid creating a duplicate ID
+	var ourDivID = "#" + tableID + "_outside_wrapper";
+	$(ourDivID).append(table);
 	this.datatable = $(table).DataTable(options);
 
 };
