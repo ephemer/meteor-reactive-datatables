@@ -12,7 +12,7 @@ Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](h
 In your template:
 
     <template name="containsTheDataTable">
-        {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject }}
+        {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject id=id}}
     </template>
 
 **Important:** Due to the way Blaze interprets parameters upon calling a template, `reactiveDataFunction` should *return a __function__ that returns an array*, not return the data itself. I'm sure there's a cleverer way to do this, but it works for now:
@@ -26,6 +26,7 @@ In your template:
             return dataTableData;
         },
         optionsObject: optionsObject // see below
+        id: id // new in 1.0.2
     });
 
 
