@@ -1,7 +1,12 @@
 ReactiveDatatable = function (options, id) {
-	console.log(options);
-	var tableID = id ? id : "datatable";
-	alert(tableID);
+	// Use the base id they passed one in, otherwise 'datatable'
+	var tableID = id || "datatable";
+
+	// TODO: ss -- November 5, 2014
+	//		 iterate through tableID_0...tableID_??
+	//		 while( $("#tableID_??"));
+	//		 tableID = tableID_??  // first one not alread in document
+	//		 to make sure that we don't create duplicate IDs
 	var self = this;
 
 	this.options = options = _.defaults({
@@ -29,7 +34,9 @@ ReactiveDatatable = function (options, id) {
 	table.className = "table dataTable";
 	
 	// Render the table element and turn it into a DataTable
-	$("#datatable_wrapper").append(table);
+	var ourDiv = "#" + tableID + "_wrapper";
+	console.log("ourDiv = " + ourDiv)
+	$(ourDiv).append(table);
 	this.datatable = $(table).DataTable(options);
 
 };
