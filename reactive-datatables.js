@@ -17,6 +17,13 @@ ReactiveDatatable = function (options, id) {
 	//		 to make sure that we don't create duplicate IDs
 	var self = this;
 
+	// TODO: ss November 6, 2014
+	//		 move this out to a global config, installed when the plugin is installed,
+	//		 so that users can configure their own global defaults.
+	//		 If there are no global defaults (i.e. they deleted the file), warn them
+	//		 use reasonable defaults here, and (somehow) allow them to reinstall the 
+	//		 global defaults file.
+	//		 
 	this.options = options = _.defaults({
 		// Any of these can be overriden by passing an options 
 		// object into your ReactiveDatatable template (see readme)

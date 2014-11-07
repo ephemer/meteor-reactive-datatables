@@ -1,7 +1,7 @@
 Package.describe({
-  summary: "Fast and reactive jQuery DataTables using standard Cursors / DataTables API. Supports Bootstrap 3.",
+  summary: "full support: jQuery dataTables, reactive, Bootstrap 3, multiple tables per page.",
   version: "1.0.2",
-  git: "https://github.com/ephemer/meteor-reactive-datatables.git"
+  git: "ssteinerXgit@github.com:ssteinerx/meteor-reactive-datatables"
 });
 
 Package.onUse(function(api) {
