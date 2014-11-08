@@ -2,62 +2,79 @@
 
 Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](http://datatables.net/) with reactively-updating data, instant search, state saving / pagination etc.
 
+## Compatibility!
+
+**NOTE: This is a fork of ephemer:reactive-datatables**
+ 
+**The ephemer version did not support multiple reactive tables on the same page.**
+
+**This version does (fully).**
+
+**There are several "backwards compatibility hacks" in this version which will be removed in ssteinerx:reactive-datatables Version 1.1.0**
+
+**Deprecation warnings will be provided in all 1.0.x versions, they will become errors in 1.1.0**
+
+**Watch your console!** 
 
 ## Installation
 
-`meteor add ephemer:reactive-datatables`
+If you used the previous ephemer version:
+`meteor remove ephemer:reactive-datatables`
+
+Then:
+`meteor add ssteinerx:reactive-datatables`
 
 ## Usage
 
 In your template:
 
     <template name="containsTheDataTable">
-        {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject }}
+        {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject id=id}}
     </template>
 
-**Important:** Due to the way Blaze interprets parameters upon calling a template, `reactiveDataFunction` should *return a __function__ that returns an array*, not return the data itself. I'm sure there's a cleverer way to do this, but it works for now:
+**Important:** `reactiveDataFunction` must *return a __function__ that returns an array* as shown below:
 
     dataTableData = function () {
-        return Meteor.users.find().fetch(); // or .map()
+        return Meteor.users.find().fetch(); 	// or .map()
     };
     
     Template.containsTheDataTable.helpers({
         reactiveDataFunction: function () {
             return dataTableData;
         },
-        optionsObject: optionsObject // see below
+        optionsObject: optionsObject, 		 	// see below
+        id:"theIdToUseForYourTable"
     });
 
-
-Set up your datatable's options as per the jquery.dataTables API, e.g.:
+Set up your datatable's options as per the [datatables](http://www.datatables.net/) API e.g:
 
     var optionsObject = {
         columns: [{
             title: 'Real Name',
             data: 'profile.realname', // note: access nested data like this
             className: 'nameColumn'
-        }, {
+        }, 
+        {
             title: 'Photo',
             data: 'profile.picture',
             render: renderPhoto, // optional data transform, see below
             className: 'imageColumn'
         }],
-        // ... see jquery.dataTables docs for more
     }
     
     function renderPhoto(cellData, renderType, currentRow) {
         // You can return html strings, change sort order etc. here
-        // Again, see jquery.dataTables docs
+        // Again, see [datatables](http://www.datatables.net/)
         var img = "<img src='" + cellData + "' title='" + currentRow.profile.realname + "'>"
         return img;
     }
 
+I've deliberately continued to keep this package as close as possible to the original API
+nor does this module exposed any global variables.
 
-I've deliberately kept this package as close as possible to the original API. I've also deliberately not exposed any global variables, although you can access the DataTable API in the usual jquery way using the '#datatable' selector from your template, i.e., to get an array with your data:
+You can access the DataTable API in the usual jquery way using the '#{{id}}' selector from your template, i.e., to get an array with your data:
 
-`$('#datatable').DataTable().rows()`
-
-
+`$('#{{id}}').DataTable().rows()`
 
 ## About returning a function
 
@@ -65,7 +82,10 @@ The reason you need to return a function with an array and not just the array it
 
 If you just pass an array into the datatable (this would involve a 1-line source code change), it won't know when the array has been updated. This is because arrays by themselves don't have an .invalidate() function attached. The trick of passing a wrapped function into the datatable's template is the only way I can see to encapsulate the datatable functionality in a package. Please send me a pull request if you can see a better way around this.
 
-
-## Acknowledgements
+## Acknowledgements (ephemer)
 
 Thank you to @smowden for finding the key to getting this whole package off the ground: `$('#datatable').DataTable().clear().rows.add(data).draw()`
+
+## Acknowledgements (ssteinerX)
+
+Big thanks to ephemer:reactive-datatables for providing a launchpoint for this project.
