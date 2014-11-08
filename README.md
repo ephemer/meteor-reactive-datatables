@@ -18,7 +18,10 @@ Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](h
 
 ## Installation
 
+If you used the previous ephemer version:
 `meteor remove ephemer:reactive-datatables`
+
+Then:
 `meteor add ssteinerx:reactive-datatables`
 
 ## Usage

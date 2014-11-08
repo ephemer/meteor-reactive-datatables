@@ -31,10 +31,10 @@ ReactiveDatatable = function (options, id) {
 		stateDuration: -1, // Store data for session only
 		pageLength: 5,
 		lengthMenu: [ 3, 5, 10, 50, 100 ],
-		columnDefs: [{ // Global default blank value to avoid popup on missing data
-			targets: "_all",
-			defaultContent: "–––"
-		}],
+// 		columnDefs: [{ // Global default blank value to avoid popup on missing data
+// 			targets: "_all",
+// 			defaultContent: "–––"
+// 		}],
 
 		stateLoadParams: function ( settings, data ){
 			// Make it easy to change to the stored page on .update()
