@@ -2,7 +2,7 @@ ReactiveDatatable = function (options) {
 	var tableID = "datatable";
 	var self = this;
 
-	this.options = options = _.defaults({
+	this.options = options = _.defaults(options, {
 		// Any of these can be overriden by passing an options 
 		// object into your ReactiveDatatable template (see readme)
 		stateSave: true,
@@ -18,7 +18,7 @@ ReactiveDatatable = function (options) {
 			// Make it easy to change to the stored page on .update()
 			self.page = data.start / data.length;
 		}
-	}, options);
+	});
 
 	// Help Blaze cleanly remove entire datatable when changing template / route by
 	// wrapping table in existing element (#datatable_wrap) defined in the template.
