@@ -5,3 +5,8 @@ Template.ReactiveDatatable.rendered = function () {
         datatable.update(data.tableData());
     });
 };
+Template.ReactiveDatatable.helpers({
+    id: function () {
+        return (this.options.id || "datatable") + "_wrapper";
+    }
+});

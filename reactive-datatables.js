@@ -5,6 +5,7 @@ ReactiveDatatable = function (options) {
 	this.options = options = _.defaults(options, {
 		// Any of these can be overriden by passing an options 
 		// object into your ReactiveDatatable template (see readme)
+        id: tableID,
 		stateSave: true,
 		stateDuration: -1, // Store data for session only
 		pageLength: 5,
@@ -23,11 +24,11 @@ ReactiveDatatable = function (options) {
 	// Help Blaze cleanly remove entire datatable when changing template / route by
 	// wrapping table in existing element (#datatable_wrap) defined in the template.
 	var table = document.createElement('table');
-	table.id = tableID;
+	table.id = this.options.id;
 	table.className = "table dataTable";
 	
 	// Render the table element and turn it into a DataTable
-	$("#datatable_wrapper").append(table);
+	$("#" + table.id + "_wrapper").append(table);
 	this.datatable = $(table).DataTable(options);
 
 };

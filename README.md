@@ -52,6 +52,12 @@ Set up your datatable's options as per the jquery.dataTables API, e.g.:
         return img;
     }
 
+If you want to use more than one table per page, you should also define the id property in the options object.
+
+ var optionsObject = {
+     id: "anotherTable",
+     columns: [...]
+     }:
 
 I've deliberately kept this package as close as possible to the original API. I've also deliberately not exposed any global variables, although you can access the DataTable API in the usual jquery way using the '#datatable' selector from your template, i.e., to get an array with your data:
 
