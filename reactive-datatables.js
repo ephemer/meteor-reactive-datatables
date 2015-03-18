@@ -33,7 +33,7 @@ ReactiveDatatable = function (options) {
 };
 
 ReactiveDatatable.prototype.update = function (data){
-	if(!data.length) return;
+	if (!data) return;
 	var self = this;
 
 	self.datatable
