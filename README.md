@@ -1,4 +1,4 @@
-# Reactive Datables
+# Reactive Datatables
 
 Provides a [meteor.js](http://www.meteor.com) way of using [jquery.dataTables](http://datatables.net/) with reactively-updating data, instant search, state saving / pagination etc.
 
