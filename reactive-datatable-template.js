@@ -10,7 +10,8 @@ Template.ReactiveDatatable.rendered = function() {
     // Help Blaze cleanly remove entire datatable when changing template / route by
     // wrapping table in existing element (#datatable_wrap) defined in the template.
     var table = document.createElement('table');
-    table.className = 'table dataTable';
+    var tableClasses = data.options.tableClasses || "";
+    table.className = 'table dataTable ' + tableClasses;
     
     // Render the table element and turn it into a DataTable
     this.$('.datatable_wrapper').append(table);
