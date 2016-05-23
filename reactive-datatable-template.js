@@ -12,7 +12,7 @@ Template.ReactiveDatatable.rendered = function() {
     var table = document.createElement('table');
     var tableClasses = data.options.tableClasses || "";
     table.className = 'table dataTable ' + tableClasses;
-    
+
     // Render the table element and turn it into a DataTable
     this.$('.datatable_wrapper').append(table);
     var dt = $(table).DataTable(data.options);
@@ -22,6 +22,24 @@ Template.ReactiveDatatable.rendered = function() {
         var info = dt.page.info();
         reactiveDataTable.page = info.page;
     });
+
+
+    // find the difference between two arrays containing objects
+    // http://stackoverflow.com/a/18384113/1001226 - answered by Jonathan Naguin
+    reactiveDataTable.dataDifference = function(array) {
+        var rest = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
+
+        var containsEquals = function(obj, target) {
+            if (obj == null) return false;
+            return _.any(obj, function(value) {
+                return _.isEqual(value, target);
+            });
+        };
+
+        return _.filter(array, function(value) {
+            return !containsEquals(rest, value);
+        });
+    };
 
     this.autorun(function() {
         reactiveDataTable.update(data.tableData());
