@@ -27,7 +27,7 @@ ReactiveDatatable.prototype.update = function(data) {
 
 	if (self.options.rowId) {
 		// find the data difference
-		var dataDifference = self.difference(data, self.datatable.rows().data().toArray());
+		var dataDifference = self.dataDifference(data, self.datatable.rows().data().toArray());
 
 		if (dataDifference.length > 0) {
 
