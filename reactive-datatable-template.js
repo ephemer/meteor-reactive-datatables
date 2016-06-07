@@ -14,7 +14,7 @@ Template.ReactiveDatatable.rendered = function() {
     table.className = 'table dataTable ' + tableClasses;
     
     // Render the table element and turn it into a DataTable
-    this.$('.datatable_wrapper').append(table);
+    this.$('.datatable_wrapper'+data.id).append(table);
     var dt = $(table).DataTable(data.options);
     reactiveDataTable.datatable = dt;
 

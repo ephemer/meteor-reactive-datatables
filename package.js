@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'ephemer:reactive-datatables',
+  name: 'valedaemon:reactive-datatables',
   summary: "Fast and reactive jQuery DataTables using standard Cursors / DataTables API. Supports Bootstrap 3.",
-  version: "1.1.0",
-  git: "https://github.com/ephemer/meteor-reactive-datatables.git"
+  version: "1.1.1",
+  git: "https://github.com/valedaemon/meteor-reactive-datatables.git"
 });
 
 Package.onUse(function(api) {
