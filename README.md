@@ -52,6 +52,15 @@ Set up your datatable's options as per the jquery.dataTables API, e.g.:
         return img;
     }
 
+By default, only one reactive table can appear on a page. However, if you need more than one, you can pass in an id. To extend the first example:
+
+    `Template.containsTheDataTable.helpers({
+         reactiveDataFunction: function () {
+             return dataTableData;
+         },
+         optionsObject: optionsObject,
+         id: 'newId'
+     });`
 
 I've deliberately kept this package as close as possible to the original API. I've also deliberately not exposed any global variables, although you can access the DataTable API in the usual jquery way using the '#datatable' selector from your template, i.e., to get an array with your data:
 
