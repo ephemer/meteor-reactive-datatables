@@ -20,14 +20,6 @@ In your template:
     dataTableData = function () {
         return Meteor.users.find().fetch(); // or .map()
     };
-    
-    Template.containsTheDataTable.helpers({
-        reactiveDataFunction: function () {
-            return dataTableData;
-        },
-        optionsObject: optionsObject // see below
-    });
-
 
 Set up your datatable's options as per the jquery.dataTables API, e.g.:
 
@@ -52,8 +44,18 @@ Set up your datatable's options as per the jquery.dataTables API, e.g.:
         return img;
     }
 
+Then just provide the options and data to the DataTable view Meteor's helpers:
 
-I've deliberately kept this package as close as possible to the original API. I've also deliberately not exposed any global variables, although you can access the DataTable API in the usual jquery way using the '#datatable' selector from your template, i.e., to get an array with your data:
+    Template.containsTheDataTable.helpers({
+        reactiveDataFunction: function () {
+            return dataTableData;
+        },
+        
+        // NOTE: The following line has to appear AFTER you define options (as we did above):
+        optionsObject: optionsObject
+    });
+
+I've deliberately kept this package as close as possible to the original API, and avoided adding any package-specific API wherever possible - use the DataTables manual if you need to do any fancy manipulations! I've also deliberately not exposed any global variables, although you can access the DataTable API in the usual jquery way using the '#datatable' selector from your template, i.e., to get an array with your data:
 
 `$('#datatable').DataTable().rows()`
 
