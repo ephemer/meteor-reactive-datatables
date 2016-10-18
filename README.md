@@ -35,6 +35,10 @@ Set up your datatable's options as per the jquery.dataTables API, e.g.:
             className: 'imageColumn'
         }],
         // ... see jquery.dataTables docs for more
+
+        // NOTE! saveState: true, is ON by default, which can cause unexpected
+        // issues during development. Set saveState: false here to disable this.
+
     }
     
     function renderPhoto(cellData, renderType, currentRow) {
