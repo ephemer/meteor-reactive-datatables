@@ -12,7 +12,7 @@ Template.ReactiveDatatable.rendered = function() {
     var table = document.createElement('table');
     var tableClasses = data.options.tableClasses || "";
     table.className = 'table dataTable ' + tableClasses;
-    
+
     // Render the table element and turn it into a DataTable
     this.$('.datatable_wrapper').append(table);
     var dt = $(table).DataTable(data.options);
@@ -22,6 +22,30 @@ Template.ReactiveDatatable.rendered = function() {
         var info = dt.page.info();
         reactiveDataTable.page = info.page;
     });
+
+    // Data difference
+    reactiveDataTable.difference = function(existingData, newData) {
+
+        var targetData = [],
+            existingDataIdArr = _.pluck(existingData, "_id"),
+            newDataIdArr = _.pluck(newData, "_id"),
+            diffIdArr = [];
+
+        if (existingData.length > newData.length) {
+            // remove
+            diffIdArr = _.difference(existingDataIdArr, newDataIdArr);
+            targetData = existingData;
+        } else {
+            // add
+            diffIdArr = _.difference(newDataIdArr, existingDataIdArr);
+            targetData = newData;
+        }
+
+        return _.filter(targetData, function(item) {
+            return _.contains(diffIdArr, item._id);
+        });
+
+    }
 
     this.autorun(function() {
         reactiveDataTable.update(data.tableData());
