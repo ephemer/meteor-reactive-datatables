@@ -34,15 +34,12 @@ ReactiveDatatable.prototype.update = function(data) {
          */
         // console.log("//////////// ADD //////////////");
         dataDifference.forEach(function(dataItem) {
-
             var index = self.datatable.row('#' + dataItem._id);
-
             if (index.length > 0) {
                 self.datatable.row(index[0]).data(dataItem).invalidate();
             } else {
                 self.datatable.row.add(dataItem);
             }
-
         });
 
     } else if (data.length < existingData.length) {
@@ -51,8 +48,16 @@ ReactiveDatatable.prototype.update = function(data) {
          */
         // console.log("//////////// REMOVE //////////////");
         dataDifference.forEach(function(dataItem) {
-            var index = self.datatable.row('#' + dataItem._id);
             self.datatable.row('#' + dataItem._id).remove();
+        });
+
+    } else if (existingData.length > 0 && (existingData.length === data.length)) {
+        /**
+         * UPDATE
+         */
+        // console.log("//////////// UPDATE //////////////");
+        data.forEach(function(dataItem) {
+            self.datatable.row('#' + dataItem._id).data(dataItem).invalidate();
         });
     } else if (!existingData.length) {
         /**
