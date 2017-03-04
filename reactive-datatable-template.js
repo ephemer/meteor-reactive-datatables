@@ -23,23 +23,29 @@ Template.ReactiveDatatable.rendered = function() {
         reactiveDataTable.page = info.page;
     });
 
+    // Data difference
+    reactiveDataTable.difference = function(existingData, newData) {
 
-    // find the difference between two arrays containing objects
-    // http://stackoverflow.com/a/18384113/1001226 - answered by Jonathan Naguin
-    reactiveDataTable.dataDifference = function(array) {
-        var rest = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
+        var targetData = [],
+            existingDataIdArr = _.pluck(existingData, "_id"),
+            newDataIdArr = _.pluck(newData, "_id"),
+            diffIdArr = [];
 
-        var containsEquals = function(obj, target) {
-            if (obj == null) return false;
-            return _.any(obj, function(value) {
-                return _.isEqual(value, target);
-            });
-        };
+        if (existingData.length > newData.length) {
+            // remove
+            diffIdArr = _.difference(existingDataIdArr, newDataIdArr);
+            targetData = existingData;
+        } else {
+            // add
+            diffIdArr = _.difference(newDataIdArr, existingDataIdArr);
+            targetData = newData;
+        }
 
-        return _.filter(array, function(value) {
-            return !containsEquals(rest, value);
+        return _.filter(targetData, function(item) {
+            return _.contains(diffIdArr, item._id);
         });
-    };
+
+    }
 
     this.autorun(function() {
         reactiveDataTable.update(data.tableData());
